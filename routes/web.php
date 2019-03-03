@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::namespace('Admin')->prefix('admin')->group(function (){
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
