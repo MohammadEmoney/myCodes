@@ -12,13 +12,17 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('front.home');
 });
 
 Route::namespace('Admin')->prefix('admin')->group(function (){
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+    Route::resource('posts', 'PostController');
+    Route::resource('users', 'UserController');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
