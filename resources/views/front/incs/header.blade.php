@@ -8,10 +8,30 @@
         <div class="row nomargin">
             <div class="span12">
                 <div class="headnav">
+                    @guest
                     <ul>
                         <li><a href="#mySignup" data-toggle="modal"><i class="icon-user"></i> Sign up</a></li>
                         <li><a href="#mySignin" data-toggle="modal">Sign in</a></li>
                     </ul>
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
                 </div>
                 <!-- Signup Modal -->
                 <div id="mySignup" class="modal styled hide fade" tabindex="-1" role="dialog" aria-labelledby="mySignupModalLabel" aria-hidden="true">
@@ -20,23 +40,23 @@
                         <h4 id="mySignupModalLabel">Create an <strong>account</strong></h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{ route('register') }}">
                             <div class="control-group">
                                 <label class="control-label" for="inputEmail">Email</label>
                                 <div class="controls">
-                                    <input type="text" id="inputEmail" placeholder="Email">
+                                    <input type="text" id="inputEmail" placeholder="Email" name="email" value="{{ old('email') }}" required autofocus>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="inputSignupPassword">Password</label>
                                 <div class="controls">
-                                    <input type="password" id="inputSignupPassword" placeholder="Password">
+                                    <input type="password" id="inputSignupPassword" placeholder="Password" name="password" required>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="inputSignupPassword2">Confirm Password</label>
                                 <div class="controls">
-                                    <input type="password" id="inputSignupPassword2" placeholder="Password">
+                                    <input type="password" id="inputSignupPassword2" placeholder="Password" name="password_confirmation" required>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -58,17 +78,18 @@
                         <h4 id="mySigninModalLabel">Login to your <strong>account</strong></h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{ route('login') }}" method="POST">
+                            @csrf
                             <div class="control-group">
-                                <label class="control-label" for="inputText">Username</label>
+                                <label class="control-label" for="inputText">Email</label>
                                 <div class="controls">
-                                    <input type="text" id="inputText" placeholder="Username">
+                                    <input type="email" id="inputText" placeholder="John@doe.com" name="email" value="{{ old('email') }}" required>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label" for="inputSigninPassword">Password</label>
                                 <div class="controls">
-                                    <input type="password" id="inputSigninPassword" placeholder="Password">
+                                    <input type="password" id="inputSigninPassword" placeholder="Password" name="password" required>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -90,7 +111,8 @@
                         <h4 id="myResetModalLabel">Reset your <strong>password</strong></h4>
                     </div>
                     <div class="modal-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="{{ route('login') }}" method="POST">
+                            @csrf
                             <div class="control-group">
                                 <label class="control-label" for="inputResetEmail">Email</label>
                                 <div class="controls">
@@ -124,11 +146,7 @@
                         <nav>
                             <ul class="nav topnav">
                                 <li class="dropdown active">
-                                    <a href="index.html">Home <i class="icon-angle-down"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="index-alt2.html">Homepage 2</a></li>
-                                        <li><a href="index-alt3.html">Homepage 3</a></li>
-                                    </ul>
+                                    <a href="/">Home</a>
                                 </li>
                                 <li class="dropdown">
                                     <a href="#">Features <i class="icon-angle-down"></i></a>
@@ -167,13 +185,7 @@
                                     </ul>
                                 </li>
                                 <li class="dropdown">
-                                    <a href="#">Blog <i class="icon-angle-down"></i></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="blog-left-sidebar.html">Blog left sidebar</a></li>
-                                        <li><a href="blog-right-sidebar.html">Blog right sidebar</a></li>
-                                        <li><a href="post-left-sidebar.html">Post left sidebar</a></li>
-                                        <li><a href="post-right-sidebar.html">Post right sidebar</a></li>
-                                    </ul>
+                                    <a href="{{ route('blog.index') }}">Blog</a>
                                 </li>
                                 <li>
                                     <a href="contact.html">Contact </a>

@@ -25,28 +25,7 @@
     <!-- start header -->
     @include('front.incs.header')
     <!-- end header -->
-    <section id="featured">
-        <!-- start slider -->
-        <!-- Slider -->
-    @include('front.incs.slider')
-        <!-- end slider -->
-    </section>
-    <section class="callaction">
-        <div class="container">
-            <div class="row">
-                <div class="span12">
-                    <div class="big-cta">
-                        <div class="cta-text">
-                            <h3>We've created more than <span class="highlight"><strong>5000 websites</strong></span> this year!</h3>
-                        </div>
-                        <div class="cta floatright">
-                            <a class="btn btn-large btn-theme btn-rounded" href="#">Request a quote</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     @yield('content')
     <section id="bottom">
         <div class="container">

@@ -23,6 +23,11 @@
                         </div>
 
                         <div class="form-group m-b-40">
+                            <label for="short_desc">Short Description</label>
+                            <input type="text" class="form-control" id="short_desc" name="short_desc" value="{{ old('short_desc') }}" required><span class="highlight"></span> <span class="bar"></span>
+                        </div>
+
+                        <div class="form-group m-b-40">
                             <label for="image" class="btn btn-success w-25">Image</label>
                             <input type="file" class="form-control" id="image" name="image" hidden><span class="highlight" ></span> <span class="bar"></span>
                             <small id="imageName"></small>

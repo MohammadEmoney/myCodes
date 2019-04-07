@@ -2715,3 +2715,25 @@ article img.pull-right, article .align-right {
 }
 
 /* Theme Styler :: End */
+
+
+.nav-item{
+  list-style: none;
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu{
+  /*margin: .5em;*/
+  padding: 1em;
+  width: 100%;
+}
+
+.dropdown-item{
+  padding: .25em .5em;
+}
+.dropdown-item:hover{
+  background: red;
+  color: #fff;
+}
+

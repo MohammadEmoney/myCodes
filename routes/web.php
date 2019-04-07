@@ -21,6 +21,10 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
     Route::resource('users', 'UserController');
 });
 
+//Front
+Route::get('blog', 'BlogController@index')->name('blog.index');
+Route::get('post/{post}', 'BlogController@show')->name('post.show');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
