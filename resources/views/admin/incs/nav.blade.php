@@ -4,7 +4,7 @@
 
     <div class="navbar-collapse collapse">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i> 5</a></li>
+            <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-envelope"></i> {{ count(unreadComments()) }}</a></li>
             <li class="nav-item"><a href="#" class="nav-link"><i class="fa fa-bell"></i> 3</a></li>
             <li class="nav-item dropdown">
                 <a href="#" id="dd_user" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {{ Auth::user()->name }}</a>

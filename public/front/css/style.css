@@ -2737,3 +2737,9 @@ article img.pull-right, article .align-right {
   color: #fff;
 }
 
+.comment-area{
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin: 1em 0;
+  padding: .5em;
+}

@@ -100,4 +100,47 @@
         </section>
     </div>
     <a href="#" class="scrollup"><i class="icon-chevron-up icon-square icon-32 active"></i></a>
+
+    <div class="container">
+        @if(session()->has('message'))
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        @endif
+        <div>
+            <h5>Leave a comment</h5>
+            <hr>
+            <form action="{{ route('create.comment') }}" method="post">
+                @csrf
+                <input type="hidden" name="post_id" value="{{ $post->id }}">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" value="{{ old('email') }}">
+                <label for="body">Comment</label>
+                <textarea name="body" id="body" cols="30" rows="10">{{ old('body') }}</textarea>
+                <div>
+                    <button class="btn btn-primary" type="submit">Send</button>
+                </div>
+
+            </form>
+        </div>
+            <hr>
+        @if(count($post->comments) > 0)
+        @foreach($post->comments as $comment)
+            <div class="comment-area">
+                <div class="card">
+                    <div class="card-header">
+                        {{ $comment->email }} | {{ TimeForHuman($comment->created_at) }}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $comment->name }}</h5>
+                        <p class="card-text">{{ $comment->body }}</p>
+                        <a href="#" class="btn btn-primary">Reply</a>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+        @endif
+    </div>
 @endsection

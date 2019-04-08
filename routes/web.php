@@ -19,11 +19,14 @@ Route::namespace('Admin')->prefix('admin')->group(function (){
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::resource('posts', 'PostController');
     Route::resource('users', 'UserController');
+    Route::resource('comments', 'CommentController');
+    Route::resource('categories', 'CategoryController');
 });
 
 //Front
 Route::get('blog', 'BlogController@index')->name('blog.index');
 Route::get('post/{post}', 'BlogController@show')->name('post.show');
+Route::post('comment', 'CommentController@create')->name('create.comment');
 
 Auth::routes();
 
